@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from "react";
+import React, {createContext, useState} from "react";
 import { nanoid } from 'nanoid'
 import { decode } from "html-entities"
 
@@ -8,7 +8,6 @@ function QuizContextProvider(props) {
 
     const [quizMarked, setQuizMarked] = useState(false)
     const [questions, setQuestions] = useState([])
-    const [fetchApi, setFetchApi] = useState(false)
     const [score, setScore] = useState(0)
     const [quizAttributes, setQuizAttributes] = useState({
         count: 10,
@@ -19,15 +18,10 @@ function QuizContextProvider(props) {
     
     React.useEffect(() => {
         fetchData();
-    }, [fetchApi])
-
-    React.useEffect(() => {
-        if(!quizMarked){
-            setFetchApi(prevState => !prevState)
-        }
-    }, [quizState, quizMarked])
+    }, [quizState])
 
     function changeQuizState(){
+        setQuizMarked(false)
         setQuizState(prevQuizState => !prevQuizState)
     }
 
@@ -43,7 +37,7 @@ function QuizContextProvider(props) {
         const correctQuestions = questions.filter(question => 
             question.selectedAnswer === decode(question.correct_answer))
         setScore(correctQuestions.length)
-        setQuizMarked(prevState => !prevState)
+        setQuizMarked(true)
     }
 
     async function fetchData() {
