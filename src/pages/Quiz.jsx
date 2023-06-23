@@ -19,16 +19,18 @@ export default function Quiz(){
     }
 
     return (
-        <section id="quiz" className='quiz'>
+        <section className="quiz-page">
             {quizMarked && score === questions.length && <Confetti />}
-            <div className='quiz-cnt'>
-                <h1>Quizzical</h1>
-                {questions.length === quizAttributes.count  && questionsHtml}
-                {questions.length !== quizAttributes.count && <p className='sorry-msg'>Sorry, there isn't enough questions in our database to fulfill your request. Please, try a lower number of questions or an alternative category/difficulty.</p>}
-                {quizMarked && <p className="quiz-score">You scored {score}/{questions.length} correct answers</p>}
-                <div className="btn-cnt">
-                    <button className="quiz-btn mark-quiz" onClick={handleClick}>{quizMarked ? "Play Again" : "Mark Quiz"}</button>
-                    {quizMarked && <Link to="/"><button className="quiz-btn change-quiz" onClick={() => setQuizMarked(prevState => !prevState)}>Change Quiz</button></Link>}
+            <div id="quiz" className='quiz'>
+                <div className='quiz-cnt'>
+                    <h1>Quizzical</h1>
+                    {questions.length === quizAttributes.count  && questionsHtml}
+                    {questions.length !== quizAttributes.count && <p className='sorry-msg'>Sorry, there isn't enough questions in our database to fulfill your request. Please, try a lower number of questions or an alternative category/difficulty.</p>}
+                    {quizMarked && <p className="quiz-score">You scored {score}/{questions.length} correct answers</p>}
+                    <div className="btn-cnt">
+                        <button className="quiz-btn mark-quiz" onClick={handleClick}>{quizMarked ? "Play Again" : "Mark Quiz"}</button>
+                        {quizMarked && <Link to="/"><button className="quiz-btn change-quiz" onClick={() => setQuizMarked(prevState => !prevState)}>Change Quiz</button></Link>}
+                    </div>
                 </div>
             </div>
         </section>

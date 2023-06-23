@@ -110,6 +110,7 @@ input::-webkit-inner-spin-button {
   background-position:top right;
   background-size: 900px;
   min-height: 100%;
+  background-repeat: no-repeat;
 }
 
 .quiz-cnt{
